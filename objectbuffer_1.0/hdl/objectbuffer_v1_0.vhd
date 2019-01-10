@@ -22,6 +22,14 @@ entity objectbuffer_v1_0 is
         video_active       : in  std_logic;
         pixel_x, pixel_y   : in  std_logic_vector(OBJECT_SIZE-1 downto 0);
         rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0);
+        -- BRAM Ports
+        bram_addrb          : out std_logic_vector(0 to 31);
+        bram_dinb           : out std_logic_vector(0 to 31);
+        bram_doutb          : in  std_logic_vector(0 to 31);
+        bram_enb            : out std_logic;
+        bram_rstb           : out std_logic;
+        bram_wenb           : out std_logic_vector(0 to 3);
+      
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -66,7 +74,15 @@ architecture arch_imp of objectbuffer_v1_0 is
 		port (
         video_active       : in  std_logic;
         pixel_x, pixel_y   : in  std_logic_vector(OBJECT_SIZE-1 downto 0);
-        rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0);		
+        rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0);
+        -- BRAM Ports
+        bram_addrb          : out std_logic_vector(0 to 31);
+        bram_doutb          : in  std_logic_vector(0 to 31);
+        bram_wenb           : out std_logic_vector(0 to 3);
+        bram_dinb           : out std_logic_vector(0 to 31);
+        bram_rstb           : out std_logic;
+        bram_enb            : out std_logic;	
+        	
 		S_AXI_ACLK	: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -108,6 +124,14 @@ objectbuffer_v1_0_S00_AXI_inst : objectbuffer_v1_0_S00_AXI
         pixel_x      => pixel_x,
         pixel_y      => pixel_y,
         rgb          => rgb,
+        
+        bram_addrb   => bram_addrb,
+        bram_doutb   => bram_doutb,
+        bram_wenb    => bram_wenb,
+        bram_dinb    => bram_dinb,
+        bram_rstb    => bram_rstb,
+        bram_enb     => bram_enb,
+        
 		S_AXI_ACLK	=> s00_axi_aclk,
 		S_AXI_ARESETN	=> s00_axi_aresetn,
 		S_AXI_AWADDR	=> s00_axi_awaddr,

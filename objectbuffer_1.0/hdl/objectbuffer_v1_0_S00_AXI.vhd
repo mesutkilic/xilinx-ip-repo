@@ -23,6 +23,13 @@ entity objectbuffer_v1_0_S00_AXI is
         pixel_x, pixel_y   : in  std_logic_vector(OBJECT_SIZE-1 downto 0);
         backgrnd_rgb       : in  std_logic_vector(PIXEL_SIZE-1 downto 0);
         rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0);
+                -- BRAM Ports
+        bram_addrb          : out std_logic_vector(0 to 31);
+        bram_doutb          : in  std_logic_vector(0 to 31);
+        bram_wenb           : out std_logic_vector(0 to 3);
+        bram_dinb           : out std_logic_vector(0 to 31);
+        bram_rstb           : out std_logic;
+        bram_enb            : out std_logic;
 		-- User ports ends
 		-- Do not modify the ports beyond this line
 
@@ -137,7 +144,14 @@ architecture arch_imp of objectbuffer_v1_0_S00_AXI is
         object1x, object1y : in  std_logic_vector(OBJECT_SIZE-1 downto 0);
         object2x, object2y : in  std_logic_vector(OBJECT_SIZE-1 downto 0);
         backgrnd_rgb       : in  std_logic_vector(PIXEL_SIZE-1 downto 0);
-        rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0)
+        rgb                : out std_logic_vector(PIXEL_SIZE-1 downto 0);
+        -- BRAM Ports
+        bram_addrb          : out std_logic_vector(0 to 31);
+        bram_doutb          : in  std_logic_vector(0 to 31);
+        bram_wenb           : out std_logic_vector(0 to 3);
+        bram_dinb           : out std_logic_vector(0 to 31);
+        bram_rstb           : out std_logic;
+        bram_enb            : out std_logic
     );
     end component;
 begin
@@ -421,7 +435,13 @@ begin
         object2x     => slv_reg2(31 downto 16),
         object2y     => slv_reg2(15 downto  0),
         backgrnd_rgb => slv_reg0(23 downto  0),
-        rgb          => rgb
+        rgb          => rgb,
+        bram_addrb   => bram_addrb,
+        bram_doutb   => bram_doutb,
+        bram_wenb    => bram_wenb,
+        bram_dinb    => bram_dinb,
+        bram_rstb    => bram_rstb,
+        bram_enb     => bram_enb
     );
 	-- User logic ends
 
