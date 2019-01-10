@@ -1,2 +1,4 @@
 # xilinx-ip-repo
-My Xilinx IP cores to be used in Vivado Design Suite
+Xilinx IP cores used in TETRIS Project
+
+https://github.com/mesutkilic/tetris_fpga
